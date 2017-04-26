@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1446671344 source:c:\users\x74654\desktop\cs473\git\myprojects\chess\main.cpp
+	<iostream>
+
+1493217316 source:c:\users\x74654\desktop\cs473\git\myprojects\chess\src\gamepiece.cpp
+	"GamePiece.h"
+	<string>
+
+1493218065 c:\users\x74654\desktop\cs473\git\myprojects\chess\include\gamepiece.h
+	<string>
+
+1493215739 source:c:\users\x74654\desktop\cs473\git\myprojects\chess\src\helpers.cpp
+	"Helpers.h"
+	<cmath>
+
+1493215733 c:\users\x74654\desktop\cs473\git\myprojects\chess\include\helpers.h
+	<string>
+	<GL/freeglut.h>
+
+1493217711 source:c:\users\x74654\desktop\cs473\git\myprojects\chess\src\gameboard.cpp
+	"GameBoard.h"
+
+1493217551 c:\users\x74654\desktop\cs473\git\myprojects\chess\include\gameboard.h
+	"GamePiece.h"
+
