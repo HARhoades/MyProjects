@@ -3,12 +3,13 @@
 
 using namespace std;
 
-GamePiece::GamePiece(string name, bool pieceIsWhite)
+GamePiece::GamePiece(string name, bool pieceIsWhite, int id)
 {
     this->pieceName = name;
     this->isWhite = pieceIsWhite;
     this->xPos = 0;
     this->yPos = 0;
+    this->pieceID = id;
 }
 
 bool GamePiece::getPieceIsWhite() {

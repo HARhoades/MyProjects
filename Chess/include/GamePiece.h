@@ -8,7 +8,7 @@ using namespace std;
 class GamePiece
 {
     public:
-        GamePiece(string name, bool pieceIsWhite);
+        GamePiece(string name, bool pieceIsWhite, int id);
 
         int pieceID; //0-15 white, 16-31 black
 

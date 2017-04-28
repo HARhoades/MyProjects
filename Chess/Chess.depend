@@ -2,11 +2,11 @@
 1446671344 source:c:\users\x74654\desktop\cs473\git\myprojects\chess\main.cpp
 	<iostream>
 
-1493217316 source:c:\users\x74654\desktop\cs473\git\myprojects\chess\src\gamepiece.cpp
+1493388233 source:c:\users\x74654\desktop\cs473\git\myprojects\chess\src\gamepiece.cpp
 	"GamePiece.h"
 	<string>
 
-1493218065 c:\users\x74654\desktop\cs473\git\myprojects\chess\include\gamepiece.h
+1493388207 c:\users\x74654\desktop\cs473\git\myprojects\chess\include\gamepiece.h
 	<string>
 
 1493215739 source:c:\users\x74654\desktop\cs473\git\myprojects\chess\src\helpers.cpp
