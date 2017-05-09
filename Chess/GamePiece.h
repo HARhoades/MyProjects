@@ -3,6 +3,7 @@
 
 #include <string>
 #include "ImportObject.h"
+#include "Object3D.h"
 
 using namespace std;
 
@@ -13,6 +14,7 @@ class GamePiece
         string pieceName;
 
         ImportObject import;
+        Object3D obj3D;
 
         int getX();
         void setX(int x);

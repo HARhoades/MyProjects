@@ -53,19 +53,6 @@ void initGame(){
         pieceArray.at(counter)->setX(counter%8); //Sets all pieces to starting column
 
     }
-    Pawn p = Pawn();
-    p.import.importAll("whitePawn");
-    /*Knight k = Knight();
-    Bishop b = Bishop();
-    Rook r = Rook();
-    Queen q = Queen();
-    King ki = King();
-    pieceArray.push_back(&p);
-    pieceArray.push_back(&k);
-    pieceArray.push_back(&b);
-    pieceArray.push_back(&r);
-    pieceArray.push_back(&q);
-    pieceArray.push_back(&ki);*/
 }
 
 void testHarness()
@@ -104,7 +91,7 @@ void display() {
 
 	cam.setView();
 	for (int k=0; k<pieceArray.size(); k++) {
-        pieceArray.at(k)->import.drawObjDL();
+        pieceArray.at(k)->import.drawObj(pieceArray.at(k)->getX(), pieceArray.at(k)->getY());
 	}
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();

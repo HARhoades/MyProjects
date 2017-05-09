@@ -138,7 +138,7 @@ void ImportObject::readMatl(std::string fName) {
 /* Draws our object in the world
  *
  */
-void ImportObject::drawObj() {
+void ImportObject::drawObj(double xPos, double yPos) {
     if (!this->filesRead) {
         std::cout << "ERROR: Object not initialized.  Cannot draw.\n";\
         return;
@@ -156,6 +156,8 @@ void ImportObject::drawObj() {
 
             // Gets the vertex and normal Vec3d for this corner of the polygon
             Vec3d vertex = this->vertecies.at(curFace.getFaceVert(v));
+            vertex.x += xPos*2.5;
+            vertex.y += yPos*2.5;
             Vec3d norm = this->normals.at(curFace.getFaceNorm(v));
       //      Vec3d texture = this->textures.at(curFace.getFaceTexture(v));
             int matNum = curFace.getFaceMat(v);
@@ -202,7 +204,7 @@ void ImportObject::initObjDL() {
     }
     this->dlNumber = glGenLists(1);
     glNewList(this->dlNumber, GL_COMPILE);
-    this->drawObj();
+    this->drawObj(0, 0);
     glEndList();
     this->dlProcessed = true;
 }

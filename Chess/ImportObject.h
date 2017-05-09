@@ -35,7 +35,7 @@ class ImportObject
         ImportObject();
         void importAll(std::string name_without_extension);
         void initObjDL();
-        void drawObj();
+        void drawObj(double xPos, double yPos);
         void drawObjDL();
 
     protected:

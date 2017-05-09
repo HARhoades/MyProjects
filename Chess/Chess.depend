@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1494338566 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\main.cpp
+1494341824 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\main.cpp
 	"Board.h"
 	"GamePiece.h"
 	"Pawn.h"
@@ -122,5 +122,116 @@
 	<iostream>
 
 1487782793 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\include\object3d.h
+	"Vec3d.h"
+
+1493747760 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\board.h
+
+1494340406 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\gamepiece.h
+	<string>
+	"ImportObject.h"
+	"Object3D.h"
+
+1494341776 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\importobject.h
+	<string>
+	<vector>
+	<map>
+	"Vec3d.h"
+	"GL/freeglut.h"
+
+1494291773 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\vec3d.h
+
+1493807445 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\pawn.h
+	"GamePiece.h"
+	<string>
+
+1493807475 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\knight.h
+	"GamePiece.h"
+	<string>
+
+1493807451 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\bishop.h
+	"GamePiece.h"
+	<string>
+
+1493807485 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\rook.h
+	"GamePiece.h"
+	<string>
+
+1493807460 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\queen.h
+	"GamePiece.h"
+	<string>
+
+1493807468 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\king.h
+	"GamePiece.h"
+	<string>
+
+1491480954 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\camera.h
+	"Vec3d.h"
+
+1493808658 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\bishop.cpp
+	"Bishop.h"
+	<string>
+	<cmath>
+
+1494296530 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\board.cpp
+	"Board.h"
+
+1491708026 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\camera.cpp
+	<cmath>
+	<iostream>
+	"stdio.h"
+	"GL/freeglut.h"
+	"Helpers.h"
+	"Camera.h"
+	"math.h"
+
+1494291909 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\helpers.h
+	<string>
+	<GL/freeglut.h>
+
+1493808149 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\gamepiece.cpp
+	"GamePiece.h"
+	<string>
+
+1494291904 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\helpers.cpp
+	"Helpers.h"
+	<cmath>
+
+1494340911 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\importobject.cpp
+	"ImportObject.h"
+	<iostream>
+	<sstream>
+	<fstream>
+	<vector>
+	<stdlib.h>
+	"GL/freeglut.h"
+
+1493809233 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\king.cpp
+	"King.h"
+	<cmath>
+
+1493809545 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\knight.cpp
+	"Knight.h"
+	<cmath>
+
+1489597975 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\object3d.cpp
+	"Object3D.h"
+	"GL/freeglut.h"
+	<iostream>
+
+1487782793 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\object3d.h
+	"Vec3d.h"
+
+1493807403 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\pawn.cpp
+	"Pawn.h"
+	<string>
+
+1493809370 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\queen.cpp
+	"Queen.h"
+	<cmath>
+
+1493809227 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\rook.cpp
+	"Rook.h"
+
+1494291786 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\vec3d.cpp
 	"Vec3d.h"
 
