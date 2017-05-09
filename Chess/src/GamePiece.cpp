@@ -3,32 +3,27 @@
 
 using namespace std;
 
-GamePiece::GamePiece(string name, bool pieceIsWhite, int id)
+GamePiece::GamePiece(string name)
 {
     this->pieceName = name;
-    this->isWhite = pieceIsWhite;
-    this->xPos = 0;
-    this->yPos = 0;
-    this->pieceID = id;
 }
 
-bool GamePiece::getPieceIsWhite() {
-    if (this->isWhite) return true;
-    else return false;
-}
+bool GamePiece::getColor() {return this->isWhite;}
+void GamePiece::setColor(bool isWhitePiece) {this->isWhite = isWhitePiece;}
+int GamePiece::getX() {return this->xPos;}
+void GamePiece::setX(int x) {this->xPos = x;}
+int GamePiece::getY() {return this->yPos;}
+void GamePiece::setY(int y) {this->yPos = y;}
 
-bool GamePiece::isValidPieceMove(int x, int y){
-    return true;
-}
-
-bool GamePiece::isValidCaptureMove(int x, int y) {
-    return this->isValidPieceMove(x, y);
-}
+bool GamePiece::isValidMove(int x, int y) {return true;}
 
 void GamePiece::movePieceTo(int x, int y) {
-    if (this->isValidPieceMove(x, y)) {
-        this->xPos = x;
-        this->yPos = y;
+    if(this->isValidMove(x, y)) {
+        this->setX(x);
+        this->setY(y);
     }
 }
 
+/*bool GamePiece::captureTargetSquare(int x, int y) {
+    return true;
+}*/

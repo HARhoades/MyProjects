@@ -9,9 +9,9 @@ using namespace std;
 class Pawn : public GamePiece
 {
     public:
-        Pawn(string name, bool pieceIsWhite, int id)
-            : GamePiece(name, pieceIsWhite, id) {name="Pawn"};
-
+        Pawn() : GamePiece("Pawn"){};
+        bool isValidMove(int x, int y);
+        bool captureTargetSquare(int x, int y);
 
     protected:
 
