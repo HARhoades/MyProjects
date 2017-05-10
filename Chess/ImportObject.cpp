@@ -157,7 +157,7 @@ void ImportObject::drawObj(double xPos, double yPos) {
             // Gets the vertex and normal Vec3d for this corner of the polygon
             Vec3d vertex = this->vertecies.at(curFace.getFaceVert(v));
             vertex.x += xPos*2.5;
-            vertex.y += yPos*2.5;
+            vertex.z += yPos*2.5;
             Vec3d norm = this->normals.at(curFace.getFaceNorm(v));
       //      Vec3d texture = this->textures.at(curFace.getFaceTexture(v));
             int matNum = curFace.getFaceMat(v);

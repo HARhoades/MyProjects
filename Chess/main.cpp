@@ -8,6 +8,7 @@
 #include "King.h"
 #include "ImportObject.h"
 #include "Camera.h"
+#include "Light.h"
 
 #include <vector>
 #include <string>
@@ -24,11 +25,15 @@ int lastFrame = 0;
 
 Board * gameboard = new Board();
 Camera cam = Camera();
+Light topLight = Light(0);
+Light sideLight = Light(1);
 vector<GamePiece*> pieceArray;
 
 
 void initGame(){
     gameboard->initBoard();
+    cam.moveCameraTo(Vec3d(0, 30, -15));
+    cam.cameraLookAt(Vec3d(0,0,0));
     int colorCounter;
     for(int counter=0; counter<32; counter++){
         colorCounter = (counter % 16) + 1;
@@ -51,8 +56,22 @@ void initGame(){
 
         }
         pieceArray.at(counter)->setX(counter%8); //Sets all pieces to starting column
-
     }
+    topLight.enableLight();
+	topLight.makeInfDist();
+    topLight.setAmbCol(Vec3d(.1, .1, .1));
+    topLight.setDiffCol(Vec3d(.7, .7, .7));
+    topLight.setSpecCol(Vec3d(.5, .5, .5));
+    topLight.setPos(Vec3d(0.0, 0.0, 0.0));
+    topLight.setRadialAtten(Vec3d(.50, .10, 0.0));
+
+    sideLight.enableLight();
+	sideLight.makeLocal();
+    sideLight.setAmbCol(Vec3d(.1, .1, .1));
+    sideLight.setDiffCol(Vec3d(1.0, 1.0, 1.0));
+    sideLight.setSpecCol(Vec3d(1.0, 1.0, 1.0));
+    sideLight.setPos(Vec3d(0.0, 2.5, -10.0));
+    sideLight.setRadialAtten(Vec3d(.50, .10, 0.0));
 }
 
 void testHarness()
@@ -117,6 +136,9 @@ int main(int argc, char** argv) {
 
     //glutIdleFunc(idle);
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_LIGHTING);
+
+    glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_FALSE);
 
 	glutMainLoop();
 }

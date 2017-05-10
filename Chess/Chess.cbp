@@ -34,23 +34,42 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="include/Bishop.h" />
-		<Unit filename="include/Board.h" />
-		<Unit filename="include/GamePiece.h" />
-		<Unit filename="include/King.h" />
-		<Unit filename="include/Knight.h" />
-		<Unit filename="include/Pawn.h" />
-		<Unit filename="include/Queen.h" />
-		<Unit filename="include/Rook.h" />
+		<Linker>
+			<Add library="glu32" />
+			<Add library="opengl32" />
+			<Add library="freeglut" />
+		</Linker>
+		<Unit filename="Bishop.cpp" />
+		<Unit filename="Bishop.h" />
+		<Unit filename="Board.cpp" />
+		<Unit filename="Board.h" />
+		<Unit filename="Camera.cpp" />
+		<Unit filename="Camera.h" />
+		<Unit filename="GamePiece.cpp" />
+		<Unit filename="GamePiece.h" />
+		<Unit filename="Helpers.cpp" />
+		<Unit filename="Helpers.h" />
+		<Unit filename="ImportObject.cpp" />
+		<Unit filename="ImportObject.h" />
+		<Unit filename="King.cpp" />
+		<Unit filename="King.h" />
+		<Unit filename="Knight.cpp" />
+		<Unit filename="Knight.h" />
+		<Unit filename="Light.cpp" />
+		<Unit filename="Light.h" />
+		<Unit filename="Object3D.cpp" />
+		<Unit filename="Object3D.h" />
+		<Unit filename="Pawn.cpp" />
+		<Unit filename="Pawn.h" />
+		<Unit filename="Queen.cpp" />
+		<Unit filename="Queen.h" />
+		<Unit filename="Rook.cpp" />
+		<Unit filename="Rook.h" />
+		<Unit filename="Vec3d.cpp" />
+		<Unit filename="Vec3d.h" />
+		<Unit filename="Vec4f.cpp" />
+		<Unit filename="Vec4f.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="src/Bishop.cpp" />
-		<Unit filename="src/Board.cpp" />
-		<Unit filename="src/GamePiece.cpp" />
-		<Unit filename="src/King.cpp" />
-		<Unit filename="src/Knight.cpp" />
-		<Unit filename="src/Pawn.cpp" />
-		<Unit filename="src/Queen.cpp" />
-		<Unit filename="src/Rook.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

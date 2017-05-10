@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1494341824 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\main.cpp
+1494380038 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\main.cpp
 	"Board.h"
 	"GamePiece.h"
 	"Pawn.h"
@@ -10,6 +10,7 @@
 	"King.h"
 	"ImportObject.h"
 	"Camera.h"
+	"Light.h"
 	<vector>
 	<string>
 	<iostream>
@@ -196,7 +197,7 @@
 	"Helpers.h"
 	<cmath>
 
-1494340911 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\importobject.cpp
+1494352747 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\importobject.cpp
 	"ImportObject.h"
 	<iostream>
 	<sstream>
@@ -234,4 +235,21 @@
 
 1494291786 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\vec3d.cpp
 	"Vec3d.h"
+
+1494379221 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\light.cpp
+	"Light.h"
+	<iostream>
+	<stdio.h>
+
+1494379158 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\light.h
+	"Vec3d.h"
+	"Vec4f.h"
+	"GL/freeglut.h"
+
+1494379128 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\vec4f.h
+	"GL/freeglut.h"
+	"Vec3d.h"
+
+1494379247 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\vec4f.cpp
+	"Vec4f.h"
 
