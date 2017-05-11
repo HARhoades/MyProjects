@@ -28,11 +28,12 @@ Camera cam = Camera();
 Light topLight = Light(0);
 Light sideLight = Light(1);
 vector<GamePiece*> pieceArray;
-
+int playerTurn = 0;
+int moveRegister[4];
 
 void initGame(){
     gameboard->initBoard();
-    cam.moveCameraTo(Vec3d(0, 30, -15));
+    cam.moveCameraTo(Vec3d(0, 30, -12.5));
     cam.cameraLookAt(Vec3d(0,0,0));
     int colorCounter;
     for(int counter=0; counter<32; counter++){
@@ -55,23 +56,90 @@ void initGame(){
                 pieceArray.at(counter)->import.importAll("black"+pieceArray.at(counter)->pieceName);
 
         }
+        pieceArray.at(counter)->isActive = true;
         pieceArray.at(counter)->setX(counter%8); //Sets all pieces to starting column
     }
-    topLight.enableLight();
-	topLight.makeInfDist();
-    topLight.setAmbCol(Vec3d(.1, .1, .1));
-    topLight.setDiffCol(Vec3d(.7, .7, .7));
-    topLight.setSpecCol(Vec3d(.5, .5, .5));
-    topLight.setPos(Vec3d(0.0, 0.0, 0.0));
-    topLight.setRadialAtten(Vec3d(.50, .10, 0.0));
+    //Overhead lighting
 
+    topLight.enableLight();
+	topLight.makeLocal();
+    topLight.setAmbCol(Vec3f(1, 1, 1));
+    topLight.setDiffCol(Vec3f(1, 1, 1));
+    topLight.setSpecCol(Vec3f(1, 1, 1));
+    topLight.setPos(Vec3f(0.0, 10.0, 0.0));
+    topLight.setRadialAtten(Vec3f(.5, 0, 0.0));
+
+
+    //"Behind" near clipping plane
     sideLight.enableLight();
 	sideLight.makeLocal();
-    sideLight.setAmbCol(Vec3d(.1, .1, .1));
-    sideLight.setDiffCol(Vec3d(1.0, 1.0, 1.0));
-    sideLight.setSpecCol(Vec3d(1.0, 1.0, 1.0));
-    sideLight.setPos(Vec3d(0.0, 2.5, -10.0));
-    sideLight.setRadialAtten(Vec3d(.50, .10, 0.0));
+    sideLight.setAmbCol(Vec3f(1, 1, 1));
+    sideLight.setDiffCol(Vec3f(1.0, 1, 1));
+    sideLight.setSpecCol(Vec3f(1.0, 1.0, 1.0));
+    sideLight.setPos(Vec3f(0.0, 2.0, -10.0));
+    sideLight.setRadialAtten(Vec3f(0.5, 0, 0.0));
+}
+
+int fillMoveRegister(){
+    string playerInput = "";
+    cin >> playerInput;
+    bool valid = false;
+    for (int i=0; i<4; i++) { //check for valid input
+        int check = playerInput[i] - '0';
+        if (check >=1 && check < 9) {
+            moveRegister[i] = check-1;
+        }
+        else {
+            cout << "Invalid move input" << endl;
+            return 0;
+        } //request new input if invalid
+        if (i == 3) valid = true;
+    }
+    return 1;
+}
+
+void gameLoop(){
+    int selectedID, targetID;
+    if(fillMoveRegister()){
+        selectedID = gameboard->boardArray[moveRegister[0]][moveRegister[1]];
+        if ((selectedID > 16 && playerTurn == 0) || (selectedID < 17 && playerTurn == 1) || selectedID == 0) {
+            cout << "Invalid piece selection" << endl;
+            return;
+        }
+        targetID = gameboard->boardArray[moveRegister[2]][moveRegister[3]];
+        if ((targetID > 16 && playerTurn == 0) || (targetID < 17 && playerTurn == 1)) {
+            cout << "Invalid move, cannot place two pieces on same square" << endl;
+            return;
+        }
+        else if (targetID == 0) {
+            if (pieceArray.at(selectedID-1)->isValidMove(moveRegister[2], moveRegister[3])) {
+                gameboard->boardArray[moveRegister[0]][moveRegister[1]] = 0;
+                gameboard->boardArray[moveRegister[2]][moveRegister[3]] = selectedID;
+                pieceArray.at(selectedID-1)->setX(moveRegister[2]);
+                pieceArray.at(selectedID-1)->setY(moveRegister[3]);
+            }
+            else {
+                cout << "Invalid move for this piece" << endl;
+                return;
+            }
+        }
+        else {
+            if (pieceArray.at(selectedID-1)->isValidMove(moveRegister[2], moveRegister[3])) {
+                gameboard->boardArray[moveRegister[0]][moveRegister[1]] = 0;
+                gameboard->boardArray[moveRegister[2]][moveRegister[3]] = selectedID;
+                pieceArray.at(targetID-1)->isActive = false;
+                pieceArray.at(selectedID-1)->setX(moveRegister[2]);
+                pieceArray.at(selectedID-1)->setY(moveRegister[3]);
+            }
+            else {
+                cout << "Invalid capture for this piece" << endl;
+                return;
+            }
+        }
+        playerTurn = (playerTurn+1)%2;
+        cout << playerTurn << endl;
+        return;
+    }
 }
 
 void testHarness()
@@ -108,12 +176,21 @@ void testHarness()
 void display() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    if (playerTurn == 0) cam.moveCameraTo(Vec3d(0, 30, -12.5));
+    else cam.moveCameraTo(Vec3d(0, 30, 37.5));
+
 	cam.setView();
+	topLight.drawLight();
+    sideLight.drawLight();
+	gameboard->boardDisplay.drawObj(3.5, 4.2);
 	for (int k=0; k<pieceArray.size(); k++) {
-        pieceArray.at(k)->import.drawObj(pieceArray.at(k)->getX(), pieceArray.at(k)->getY());
+        if(pieceArray.at(k)->isActive) {
+            pieceArray.at(k)->import.drawObj(pieceArray.at(k)->getX(), pieceArray.at(k)->getY());
+        }
 	}
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
+
 
 	glutSwapBuffers();
 }
@@ -130,13 +207,11 @@ int main(int argc, char** argv) {
 	glutCreateWindow("3D Chess");
 	lastFrame = glutGet(GLUT_ELAPSED_TIME);
 	glutDisplayFunc(display);
-	//glutKeyboardFunc(keyboard);
-    //glutMouseFunc(mouse);
-    //glutMotionFunc(mouseMotion);
 
-    //glutIdleFunc(idle);
+    glutIdleFunc(gameLoop);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_LIGHTING);
+    glEnable(GL_COLOR_MATERIAL);
 
     glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_FALSE);
 

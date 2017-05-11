@@ -6,6 +6,7 @@ using namespace std;
 GamePiece::GamePiece(string name)
 {
     this->pieceName = name;
+    this->isActive = true;
 }
 
 bool GamePiece::getColor() {return this->isWhite;}

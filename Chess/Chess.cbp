@@ -67,6 +67,8 @@
 		<Unit filename="Rook.h" />
 		<Unit filename="Vec3d.cpp" />
 		<Unit filename="Vec3d.h" />
+		<Unit filename="Vec3f.cpp" />
+		<Unit filename="Vec3f.h" />
 		<Unit filename="Vec4f.cpp" />
 		<Unit filename="Vec4f.h" />
 		<Unit filename="main.cpp" />

@@ -25,6 +25,7 @@ class GamePiece
         bool isValidMove(int x, int y);
         void movePieceTo(int x, int y);
         bool captureTargetSquare(int x, int y);
+        bool isActive;
 
     protected:
 

@@ -1,7 +1,7 @@
 #ifndef LIGHT_H
 #define LIGHT_H
 
-#include "Vec3d.h"
+#include "Vec3f.h"
 #include "Vec4f.h"
 #include "GL/freeglut.h"
 
@@ -16,13 +16,13 @@ class Light
         void makeLocal();       // Converts light into a local light source
         void makeInfDist();     // Converts light into a light at inf. distance
 
-        void setPos(Vec3d newPos);
-        void changePos(Vec3d deltaPos);
-        void setRadialAtten(Vec3d newAtten);
+        void setPos(Vec3f newPos);
+        void changePos(Vec3f deltaPos);
+        void setRadialAtten(Vec3f newAtten);
 
-        void setAmbCol(Vec3d newCol);
-        void setDiffCol(Vec3d newCol);
-        void setSpecCol(Vec3d newCol);
+        void setAmbCol(Vec3f newCol);
+        void setDiffCol(Vec3f newCol);
+        void setSpecCol(Vec3f newCol);
 
         void drawLight();
 
@@ -33,8 +33,8 @@ class Light
 
         int lightNum;
 
-        Vec3d pos;
-        Vec3d radAtten;
+        Vec3f pos;
+        Vec3f radAtten;
         Vec4f ambLight;
         Vec4f diffLight;
         Vec4f specLight;

@@ -2,10 +2,10 @@
 
 Board::Board()
 {
-    //ctor
 }
 
 void Board::initBoard(){
+    this->boardDisplay.importAll("gameBoard");
     for (int i=0; i<8; i++){
         for (int j=0; j<8; j++){
             this->boardArray[i][j] = 0;
@@ -17,5 +17,4 @@ void Board::initBoard(){
         if (initIDCounter <= 16) this->boardArray[rowIndex][initIDCounter%8] = initIDCounter;
         else this->boardArray[8 - rowIndex][initIDCounter%8] = initIDCounter;
     }
-    //TODO - init by piece IDs
 }

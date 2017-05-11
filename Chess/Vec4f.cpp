@@ -7,7 +7,7 @@ Vec4f::Vec4f() {
     this->a = 0.0;
 }
 
-Vec4f::Vec4f(Vec3d vec3, GLfloat ia) {
+Vec4f::Vec4f(Vec3f vec3, GLfloat ia) {
     this->x = vec3.x;
     this->y = vec3.y;
     this->z = vec3.z;

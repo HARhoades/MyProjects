@@ -20,6 +20,7 @@ void ImportObject::readObj(std::string fName) {
     std::ifstream infile(fName.c_str());
     std::string line;
     int curMat = 0;     // Tracks current material being used to draw the object
+    bool textFlag = false;
 
     // Push placeholder Vec3ds to vertices and normals;
     // Allows index numbers to align directly with the vertex# or normal#
@@ -75,13 +76,19 @@ void ImportObject::readObj(std::string fName) {
                 indx = nextDelim;
 
                 // We need to break up our chunk around the //
-                int indxA = chunk.find("//");
+
+                int indxA = chunk.find("/");
                 int indxB = chunk.find_last_of("/");
 
+                int text = -1;
                 int vert = (int)strtol(chunk.substr(0, indxA).c_str(), NULL, 10);
                 int norm = (int)strtol(chunk.substr(indxB + 1).c_str(), NULL, 10);
 
-                newFace.addVertNorm(vert, norm, curMat);
+                if (indxA - indxB > 1) {
+                    text = (int)strtol(chunk.substr(indxA,indxB).c_str(), NULL, 10);
+                }
+
+                newFace.addVertNorm(vert, norm, curMat, text);
             }
             this->faces.push_back(newFace);
         }
@@ -89,7 +96,7 @@ void ImportObject::readObj(std::string fName) {
 
     std::cout << fName << " file parsed.\n";
     std::cout << vertecies.size() << " vertecies parsed.\n";
-   // std::cout << textures.size() << " texture vertecies parsed.\n";
+    std::cout << textures.size() << " texture vertecies parsed.\n";
     std::cout << normals.size() << " normals parsed.\n";
     std::cout << faces.size() << " faces parsed.\n";
 
@@ -104,7 +111,7 @@ void ImportObject::readMatl(std::string fName) {
     std::string line;
     std::string linePrefix;
     std::string matName;
-    Vec3d matVal = Vec3d();
+    Vec3d matValTracker[3] = {Vec3d(), Vec3d(), Vec3d()};
     int matCount = 0;           // Index of next material to be added
 
     while (std::getline(infile, line)) {
@@ -115,19 +122,29 @@ void ImportObject::readMatl(std::string fName) {
             matName = line.substr(7);
         }
         else if (linePrefix == "Kd") {
-            matVal = getV3D(line);
-
+            matValTracker[0] = getV3D(line);
+        }
             // Updates our map with the name of the material as the key
             // and the value is an integer representing the material
             // Didn't implement a direct string to Vec3d map to make comparisons
             // quicker in the drawing phase (only need to compare one integer
             // to see if the color needs to be changed versus three doubles)
-            this->matAbbrev.insert(std::pair<std::string, int>(matName, matCount));
-            this->materials.push_back(matVal);
-
-            matCount++;
+        else if (linePrefix == "Ka") {
+            matValTracker[1] = getV3D(line);
         }
+
+        else if (linePrefix == "Ks") {
+            matValTracker[2] = getV3D(line);
+        }
+
     }
+
+    this->matAbbrev.insert(std::pair<std::string, int>(matName, matCount));
+    this->materials.push_back(matValTracker[0]);
+    this->materials.push_back(matValTracker[1]);
+    this->materials.push_back(matValTracker[2]);
+
+    matCount++;
 
     std::cout << fName << " parsed.\n";
     std::cout << matCount << " materials parsed.\n";
@@ -159,15 +176,28 @@ void ImportObject::drawObj(double xPos, double yPos) {
             vertex.x += xPos*2.5;
             vertex.z += yPos*2.5;
             Vec3d norm = this->normals.at(curFace.getFaceNorm(v));
-      //      Vec3d texture = this->textures.at(curFace.getFaceTexture(v));
+            int textCheck = curFace.getFaceTexture(v);
+            if (textCheck > -1) {
+                Vec3d texture = this->textures.at(textCheck);
+            }
             int matNum = curFace.getFaceMat(v);
 
             // Compare the material associated with this point to the
             // previous one used
+            //TODO
             if (matNum != curMatNum) {
                 curMatNum = matNum;
-                Vec3d col = this->materials.at(matNum);
-                glColor3f(col.x, col.y, col.z);
+                Vec3d amb = this->materials.at(matNum*3+1);
+                Vec3d spec = this->materials.at(matNum*3+2);
+                Vec3d diff = this->materials.at(matNum*3); //Uses diffuse value
+                glColor3f(diff.x, diff.y, diff.z);
+                GLfloat ambient[] = {amb.x, amb.y, amb.z, 1.0};
+                GLfloat specular[] = {spec.x, spec.y, spec.z, 1.0};
+                GLfloat diffuse[] = {diff.x, diff.y, diff.z, 1.0};
+                glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
+                glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+                glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
+                glMaterialf(GL_FRONT, GL_SHININESS, 1.0);
             }
 
             glNormal3d(norm.x, norm.y, norm.z);
@@ -184,6 +214,7 @@ void ImportObject::importAll(std::string baseName) {
     this->normals.clear();
     this->materials.clear();
     this->matAbbrev.clear();
+    this->textures.clear();
 
     std::string matName = baseName + ".mtl";
     std::string objName = baseName + ".obj";
@@ -241,10 +272,11 @@ Vec3d ImportObject::getTextVec(std::string line) {
 Face::Face() {
 }
 
-void Face::addVertNorm(int vertexNum, int normNum, int matNum) {
+void Face::addVertNorm(int vertexNum, int normNum, int matNum, int textNum) {
     this->faceVert.push_back(vertexNum);
     this->faceNorm.push_back(normNum);
     this->faceMat.push_back(matNum);
+    this->faceText.push_back(textNum);
 }
 
 int Face::getFaceVert(int num) {
@@ -256,7 +288,7 @@ int Face::getFaceNorm(int num) {
 }
 
 int Face::getFaceTexture(int num) {
- //   return this->faceT
+    return this->faceText.at(num);
 }
 
 int Face::getFaceMat(int num) {

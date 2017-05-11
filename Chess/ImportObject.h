@@ -16,7 +16,7 @@ class Face
 {
     public:
         Face();
-        void addVertNorm(int vertexNum, int normNum, int matNum);
+        void addVertNorm(int vertexNum, int normNum, int matNum, int textNum);
         int getFaceVert(int num);
         int getFaceNorm(int num);
         int getFaceMat(int num);
@@ -25,6 +25,7 @@ class Face
 
     private:
         std::vector<int> faceVert;
+        std::vector<int> faceText;
         std::vector<int> faceNorm;
         std::vector<int> faceMat;
 };

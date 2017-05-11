@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1494380038 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\main.cpp
+1494530165 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\main.cpp
 	"Board.h"
 	"GamePiece.h"
 	"Pawn.h"
@@ -125,14 +125,15 @@
 1487782793 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\include\object3d.h
 	"Vec3d.h"
 
-1493747760 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\board.h
+1494504100 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\board.h
+	"ImportObject.h"
 
-1494340406 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\gamepiece.h
+1494503363 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\gamepiece.h
 	<string>
 	"ImportObject.h"
 	"Object3D.h"
 
-1494341776 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\importobject.h
+1494527615 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\importobject.h
 	<string>
 	<vector>
 	<map>
@@ -173,7 +174,7 @@
 	<string>
 	<cmath>
 
-1494296530 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\board.cpp
+1494504443 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\board.cpp
 	"Board.h"
 
 1491708026 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\camera.cpp
@@ -189,7 +190,7 @@
 	<string>
 	<GL/freeglut.h>
 
-1493808149 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\gamepiece.cpp
+1494503373 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\gamepiece.cpp
 	"GamePiece.h"
 	<string>
 
@@ -197,7 +198,7 @@
 	"Helpers.h"
 	<cmath>
 
-1494352747 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\importobject.cpp
+1494530208 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\importobject.cpp
 	"ImportObject.h"
 	<iostream>
 	<sstream>
@@ -236,20 +237,27 @@
 1494291786 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\vec3d.cpp
 	"Vec3d.h"
 
-1494379221 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\light.cpp
+1494429602 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\light.cpp
 	"Light.h"
 	<iostream>
 	<stdio.h>
 
-1494379158 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\light.h
-	"Vec3d.h"
+1490645700 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\light.h
+	"Vec3f.h"
 	"Vec4f.h"
 	"GL/freeglut.h"
 
-1494379128 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\vec4f.h
+1494429652 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\vec4f.h
 	"GL/freeglut.h"
 	"Vec3d.h"
+	"Vec3f.h"
 
-1494379247 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\vec4f.cpp
+1494429640 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\vec4f.cpp
 	"Vec4f.h"
+
+1490637758 c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\vec3f.h
+	"GL/freeglut.h"
+
+1490637676 source:c:\users\x74654\desktop\west point\ay17-2\academics\cs473 - graphics\chess\vec3f.cpp
+	"Vec3f.h"
 

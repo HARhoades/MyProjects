@@ -8,13 +8,13 @@ Light::Light(int num){
         num = 0;
     }
     this->lightNum = GL_LIGHT0 + num;
-    this->setPos(Vec3d(0.0, 0.0, 1.0));
+    this->setPos(Vec3f(0.0, 0.0, 1.0));
     this->disableLight();
     this->makeLocal();
-    this->setAmbCol(Vec3d(1.0, 1.0, 1.0));
-    this->setDiffCol(Vec3d(1.0, 1.0, 1.0));
-    this->setSpecCol(Vec3d(1.0, 1.0, 1.0));
-    this->setRadialAtten(Vec3d(1.0, 0.0, 0.0));
+    this->setAmbCol(Vec3f(1.0, 1.0, 1.0));
+    this->setDiffCol(Vec3f(1.0, 1.0, 1.0));
+    this->setSpecCol(Vec3f(1.0, 1.0, 1.0));
+    this->setRadialAtten(Vec3f(1.0, 0.0, 0.0));
 }
 
 void Light::makeLocal() {
@@ -39,37 +39,37 @@ void Light::disableLight() {
     glDisable(this->lightNum);
 }
 
-void Light::setPos(Vec3d newPos) {
+void Light::setPos(Vec3f newPos) {
     this->pos = newPos;
     this->setLight();
 }
 
-void Light::changePos(Vec3d deltaPos) {
+void Light::changePos(Vec3f deltaPos) {
     this->pos.x += deltaPos.x;
     this->pos.y += deltaPos.y;
     this->pos.z += deltaPos.z;
     this->setLight();
 }
 
-void Light::setRadialAtten(Vec3d newAtten) {
+void Light::setRadialAtten(Vec3f newAtten) {
     this->radAtten = newAtten;
     glLightf(this->lightNum, GL_CONSTANT_ATTENUATION, this->radAtten.x);
     glLightf(this->lightNum, GL_LINEAR_ATTENUATION, this->radAtten.y);
     glLightf(this->lightNum, GL_QUADRATIC_ATTENUATION, this->radAtten.z);
 }
 
-void Light::setAmbCol(Vec3d newCol) {
+void Light::setAmbCol(Vec3f newCol) {
     this->ambLight = Vec4f(newCol, 1.0);
     GLfloat colArray[] = {this->ambLight.x, this->ambLight.y, this->ambLight.z, this->ambLight.a};
     glLightfv(this->lightNum, GL_AMBIENT, colArray);
 }
-void Light::setDiffCol(Vec3d newCol) {
+void Light::setDiffCol(Vec3f newCol) {
     this->diffLight = Vec4f(newCol, 1.0);
     GLfloat colArray[] = {this->ambLight.x, this->ambLight.y, this->ambLight.z, this->ambLight.a};
     glLightfv(this->lightNum, GL_DIFFUSE, colArray);
 }
 
-void Light::setSpecCol(Vec3d newCol) {
+void Light::setSpecCol(Vec3f newCol) {
     this->specLight = Vec4f(newCol, 1.0);
     GLfloat colArray[] = {this->ambLight.x, this->ambLight.y, this->ambLight.z, this->ambLight.a};
     glLightfv(this->lightNum, GL_SPECULAR, colArray);
@@ -77,7 +77,7 @@ void Light::setSpecCol(Vec3d newCol) {
 
 void Light::drawLight() {
     if (this->localLight) {
-        glColor3d(1.0, 1.0, 0.0);
+        glColor3f(1.0, 1.0, 0.0);
         GLfloat black[] = {0.0, 0.0, 0.0, 1.0};
         GLfloat yellow[] = {1.0, 1.0, 0.0, 1.0};
         glMaterialfv(GL_FRONT, GL_EMISSION, yellow);
